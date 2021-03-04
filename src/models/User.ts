@@ -5,7 +5,7 @@ import {v4 as uuid} from 'uuid'
 - as uuid = renomeia o v4 para uuid.
 */
 
-@Entity()
+@Entity('users')
 class User {
   @PrimaryColumn()
   readonly id: String
