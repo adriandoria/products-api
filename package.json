@@ -1,12 +1,15 @@
 {
-  "name": "products-api-1",
+  "name": "products-api",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/gatoazedo/products-api-1.git",
-  "author": "<guilhermeazevedo.dev@gmail.com>",
+  "repository": "https://github.com/adriandoria/products-api",
+  "author": "<adriandoria3@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.31"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
@@ -14,6 +17,7 @@
     "typescript": "^4.2.2"
   },
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+    "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
   }
 }
