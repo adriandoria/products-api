@@ -12,13 +12,13 @@ class Product {
   name: String
 
   @Column()
-  price: String
+  description: String
 
   @Column()
-  user_id: String
+  price: String
 
   @CreateDateColumn()
-    created_at: Date
+  created_at: Date
 
   constructor() {
     if (!this.id) {
