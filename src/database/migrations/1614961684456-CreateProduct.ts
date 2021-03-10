@@ -13,6 +13,10 @@ export class CreateProduct1614961684456 implements MigrationInterface {
             isPrimary: true
           },
           {
+            name: 'user_id',
+            type: 'uuid'
+          },
+          {
             name: 'name',
             type: 'varchar',
           },
@@ -28,6 +32,17 @@ export class CreateProduct1614961684456 implements MigrationInterface {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()'
+          }
+        ],
+
+        foreignKeys: [
+          {
+            name: 'FKuser',
+            referencedTableName: 'users',
+            referencedColumnNames: ['id'],
+            columnNames: ['user_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
           }
         ]
     }))
