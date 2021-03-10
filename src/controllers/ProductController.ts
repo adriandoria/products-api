@@ -1,13 +1,25 @@
 import { Request, Response } from 'express'
 import { getCustomRepository } from 'typeorm'
 import { ProductsRepository } from '../repositories/ProductsRepository'
+import { UsersRepository } from '../repositories/UsersRepository'
 
 class ProductController {
   async create(req: Request, res: Response) {
-    const {name, description, price} = req.body
+    const {name, email, description, price} = req.body
 
     const productRepository = getCustomRepository(ProductsRepository)
+    const usersRepository = getCustomRepository(UsersRepository)
 
+    //Verifica se o usuário já está cadastrado.
+    const userAlredyExists = await usersRepository.findOne({email})
+
+    if(!userAlredyExists) {
+      return res.status(400).json({
+        error: 'User does not exists.'
+      })
+    }
+
+    //Verifica se o produto já existe.
     const productAlreadyExists = await productRepository.findOne({name})
 
     if (productAlreadyExists) {
@@ -16,8 +28,11 @@ class ProductController {
       })
     }
 
-    const product = productRepository.create({
-      name, description, price
+    const product = await productRepository.create({
+      user_id: userAlredyExists.id,
+      name,
+      description,
+      price
     })
     
     await productRepository.save(product)

@@ -9,6 +9,9 @@ class Product {
   readonly id: String
 
   @Column()
+  user_id: String
+
+  @Column()
   name: String
 
   @Column()
